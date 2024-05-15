@@ -26,6 +26,7 @@ In rollback, all versions that have version = tid are invalidated by setting ver
 
 In commit, all records that have a version of 0 and another records with version as tid are invalidated, and the latter record's version is set to 0.
 
+The init_transaction just writes '0' to the transaction.dat which contains the number of transactions that are executing / have executed. This is used to generate transaction ID.
 
 ## Challenges Faced in implementing concurrency
 - Sharing the bst index among all processes that have opened a repo.
