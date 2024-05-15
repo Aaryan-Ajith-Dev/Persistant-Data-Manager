@@ -34,14 +34,6 @@ void bst_free( struct BST_Node *root );
 // Frees not only the nodes but also the data in the nodes
 void bst_destroy( struct BST_Node *root );
 
-void load_shared_bst( struct BST_Node *root, struct BST_Node * shared_bst , int * offset);
-
-struct BST_Node * init_shared_bst(char *);
-
-int get_shm_id(char *);
-
-int shmExists(char *);
-
 #define BST_SUCCESS 0
 #define BST_DUP_KEY 1
 #define BST_NULL 2
