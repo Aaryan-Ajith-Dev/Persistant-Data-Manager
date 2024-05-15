@@ -32,7 +32,7 @@ The init_transaction just writes '0' to the transaction.dat which contains the n
 - Sharing the bst index among all processes that have opened a repo.
 
 ## Attempted Solutions for concurrency
-- Used OS functionalities to implement file locking and tried loading the bst in shared memory.
+- Can be achieved using OS functionalities to implement file locking and loading the bst in shared memory.
 - Whenever a user calls the pds_open(repo_name), it checks whether the shared memory exists or not and accordingly creates / opens it.
 
 
