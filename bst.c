@@ -118,50 +118,5 @@ static struct BST_Node *make_bst_node( int key, void *data )
 	return newnode;
 }
 
-int get_shm_id(char * name) {
-	key_t key = ftok(name, 'a');
-	printf("name: %s\n", name);
-	int shmid = shmget(key, MAX_NUM*sizeof(struct BST_Node), 0666 | IPC_CREAT);
-	return shmid;
-}
-
-struct BST_Node * init_shared_bst(char * repo_name) {	// creates / gets shared memory
-	int shmid = get_shm_id(repo_name);
-	printf("shmid: %d\n", shmid);
-	perror("shmid");
-	struct BST_Node * root = shmat(shmid, (void *) 0, 0);
-	return root;
-}
-
-int shmExists(char * repo_name) {
-	key_t key = ftok(repo_name, 'a');
-	int shmid = shmget(key, MAX_NUM*sizeof(struct BST_Node), 0666 | IPC_EXCL | IPC_CREAT);
-	return shmid; 
-}
-
-void load_shared_bst(struct BST_Node *root, struct BST_Node *shared_bst, int *offset) {
-    // store in preorder
-	if (root == NULL) {
-        return;
-    }
-
-    int current_offset = (*offset)++;
-    shared_bst[current_offset] = *root;
-
-    if (root->left_child) {
-        shared_bst[current_offset].left_child = &shared_bst[*offset];
-        load_shared_bst(root->left_child, shared_bst, offset);
-    } else {
-        shared_bst[current_offset].left_child = NULL;
-    }
-
-    if (root->right_child) {
-        shared_bst[current_offset].right_child = &shared_bst[*offset];
-        load_shared_bst(root->right_child, shared_bst, offset);
-    } else {
-        shared_bst[current_offset].right_child = NULL;
-    }
-}
-
 
 
