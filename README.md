@@ -37,8 +37,8 @@ In commit, all records that have a version of 0 and another records with version
 
 ## Usage
 
-cc init_transaction.c
+cc init_transaction.c <br/>
 ./a.out
 
-cc -o pds_tester pds_tester.c pds.c bst.c contact.c
+cc -o pds_tester pds_tester.c pds.c bst.c contact.c<br/>
 ./pds_tester input_file.in
