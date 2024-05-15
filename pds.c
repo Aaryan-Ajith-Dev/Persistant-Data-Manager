@@ -77,7 +77,6 @@ int pds_load_ndx(){
 		return PDS_FILE_ERROR;
 	
 	repo_handle.rec_count = n;
-	// if (shmExists(repo_handle.pds_name)!=-1) {
 	for (int i = 0; i < n; i++){
 		struct PDS_NdxInfo info;
 		if (!fread(&info, sizeof(struct PDS_NdxInfo), 1, fp)) {
@@ -89,16 +88,7 @@ int pds_load_ndx(){
 		offset->uncommited = NO_OFFSET;
 		bst_add_node( &repo_handle.ndx_root, info.key, offset);
 	}
-	// 	struct BST_Node *shared = init_shared_bst(repo_handle.pds_name);
-	// 	int offset = 0;
-	// 	load_shared_bst(repo_handle.ndx_root, shared, &offset);
-	// 	bst_destroy(repo_handle.ndx_root);
-	// 	repo_handle.ndx_root = shared;
-	// 	bst_print(repo_handle.ndx_root);
-	// }
-	// else {
-	// 	repo_handle.ndx_root = init_shared_bst(repo_handle.pds_name);
-	// }
+
 	fclose(fp);
 	return PDS_SUCCESS;
 }
@@ -494,14 +484,6 @@ int commit_transaction(int tid) {
         fseek(fp, position, SEEK_SET);
     }
 
-	// printf("----------\n");
-	// fseek(fp, 0, SEEK_SET);
-	// while (fread(&key, sizeof(int), 1, fp) == 1) {
-    //     if (fread(&version, sizeof(int), 1, fp) != 1) break;
-    //     if (fread(rec, repo_handle.rec_size, 1, fp) != 1) break;
-	// 	printf("(key %d, version %d)\n", key, version);
-        
-    // }
 
     // Unlock the file
     fl.l_type = F_UNLCK;
@@ -564,14 +546,6 @@ int rollback_transaction(int tid) {
         fseek(fp, position, SEEK_SET);
     }
 
-	// printf("----------\n");
-	// fseek(fp, 0, SEEK_SET);
-	// while (fread(&key, sizeof(int), 1, fp) == 1) {
-    //     if (fread(&version, sizeof(int), 1, fp) != 1) break;
-    //     if (fread(rec, repo_handle.rec_size, 1, fp) != 1) break;
-	// 	printf("(key %d, version %d)\n", key, version);
-        
-    // }
     // Unlock the file
     fl.l_type = F_UNLCK;
     fcntl(fileno(fp), F_SETLKW, &fl);
