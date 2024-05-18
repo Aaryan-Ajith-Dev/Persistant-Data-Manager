@@ -43,3 +43,9 @@ cc init_transaction.c <br/>
 
 cc -o pds_tester pds_tester.c pds.c bst.c contact.c<br/>
 ./pds_tester input_file.in
+
+## Testing
+- The public_testcase.in contains the START_TRANSACTION and ROLLBACK, COMMIT commands that can be tested by running the pds_tester with that input file.
+- Every contact record that is created has initial values as "dummy_values"
+- The update command updates this to "dummy_values2", this can be used to check if update has executed correctly or not
+- Similary, the input file also tests rollback and commit.
