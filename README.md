@@ -11,7 +11,7 @@ This project is an add-on to the existing pds lab 3b project which initially con
 - Implemented rollback
 - Implemented commit
 - Implemented update
-- Implemented Mulitple Verions for a given data item
+- Implemented Mulitple Versions for a given data item
 - Implemented the corresponding uncommited versions of put, get, update
 
 ## Working of Transaction and Multiversion
@@ -28,8 +28,6 @@ In commit, all records that have a version of 0 and another records with version
 
 The init_transaction just writes '0' to the transaction.dat which contains the number of transactions that are executing / have executed. This is used to generate transaction ID.
 
-## Challenges Faced in implementing concurrency
-- Sharing the bst index among all processes that have opened a repo.
 
 ## Attempted Solutions for concurrency
 - Can be achieved using OS functionalities to implement file locking and loading the bst in shared memory.
