@@ -1,8 +1,7 @@
-# PDS Lab 3B Extension: Transaction Management
-
+# Persistant Data Manager (PDS)
 ## Introduction
 
-This project is an add-on to the existing pds lab 3b project which initially contained get and store functionalities via a bst constructed from an index file. I have implemented transactions and in the process, I have maintained multiple versions for a data object (similar to multiverison concurrency control) in an attempt to support concurrency. 
+This project is an add-on to the existing pds lab 3b which initially contained get and store functionalities via a bst constructed from an index file. I have implemented transactions and in the process, I have maintained multiple versions for a data object (similar to multiverison concurrency control) in an attempt to support concurrency. 
 *This project currently supports only one user at a time.*
 
 ## Features
